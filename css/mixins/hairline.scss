@@ -1,0 +1,82 @@
+/**
+ * 1px边框
+ * @param directions{string|list} 边框方向
+ * @param color{string} 边框颜色
+ * @param radius{number|list} 圆角
+ * @param position{string} 伪类:after|:before
+ */
+@mixin hairline(
+  $directions: bottom,
+  $color: #ccc,
+  $radius: 0,
+  $position: after
+) {
+  // 是否只有一个方向
+  @if (string == type-of($directions)) {
+    $directions: ($directions)
+  }
+
+  @each $direction in $directions {
+    border-#{$direction}: 1px solid $color;
+  }
+
+  // 判断圆角是list还是number
+  @if (list == type-of($radius)) {
+    border-radius: nth($radius, 1) nth($radius, 2) nth($radius, 3) nth($radius, 4);
+  } @else {
+    border-radius: $radius;
+  }
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    & {
+      position: relative;
+
+      // 删除1像素密度比下的边框
+      @each $direction in $directions {
+        border-#{$direction}: none;
+      }
+    }
+
+    &:#{$position} {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      box-sizing: border-box;
+      padding: 1px;
+      transform-origin: 0 0;
+      pointer-events: none;
+      border: 0 solid $color;
+
+      @each $direction in $directions {
+        border-#{$direction}-width: 1px;
+      }
+
+      // 判断圆角是list还是number
+      @if (list == type-of($radius)) {
+        border-radius: nth($radius, 1)*2 nth($radius, 2)*2 nth($radius, 3)*2 nth($radius, 4)*2;
+      } @else {
+        border-radius: $radius*2;
+      }
+    }
+  }
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+    &:#{$position} {
+      width: 300%;
+      height: 300%;
+      transform: scale(0.3333);
+
+      // 判断圆角是list还是number
+      @if (list == type-of($radius)) {
+        border-radius: nth($radius, 1)*3 nth($radius, 2)*3 nth($radius, 3)*3 nth($radius, 4)*3;
+      } @else {
+        border-radius: $radius*3;
+      }
+    }
+  }
+}

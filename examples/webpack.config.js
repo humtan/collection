@@ -17,6 +17,24 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.join(__dirname, '__dist__')
   },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
+      }
+    ]
+  },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NamedModulesPlugin(),

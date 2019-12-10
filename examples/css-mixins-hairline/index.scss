@@ -1,0 +1,9 @@
+@import '../../css/mixins/hairline.scss';
+
+.hairline {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+
+  @include hairline($directions: (top, left, right, bottom), $color: #f00, $radius: (20px, 30px, 40px, 50px))
+}
