@@ -1,11 +1,17 @@
+/**
+ * 参考
+ * https://github.com/livoras/blog/issues/13
+ * https://juejin.im/post/5c8e5e4951882545c109ae9c
+ */
+
 class VirtualDom {
   /**
-   * @param type{string} 标签名
+   * @param tag{string} 标签名
    * @param attrs{Object} 属性
    * @param children{Array<VirtualDom | string>} 子元素
    */
-  constructor(type, attrs, children) {
-    this.type = type;
+  constructor(tag, attrs, children) {
+    this.tag = tag;
     this.attrs = attrs;
     this.children = children;
   }
@@ -13,13 +19,13 @@ class VirtualDom {
 
 /**
  * 创建VirtualDom
- * @param type{string} 标签名
+ * @param tag{string} 标签名
  * @param attrs{Object} 属性
  * @param children{Array<VirtualDom | string>} 子元素
  * @returns {VirtualDom}
  */
-function createVirtualDom(type, attrs, children) {
-  return new VirtualDom(type, attrs, children)
+function createVirtualDom(tag, attrs, children) {
+  return new VirtualDom(tag, attrs, children)
 }
 
 /**
@@ -28,9 +34,9 @@ function createVirtualDom(type, attrs, children) {
  * @returns {HTMLElement}
  */
 function render(virtualDom) {
-  const {type, attrs, children} = virtualDom;
+  const {tag, attrs, children} = virtualDom;
   // 根据type创建Dom
-  const el = document.createElement(type);
+  const el = document.createElement(tag);
   // 设置属性
   // TODO 个别属性需要特殊处理
   for (let attr in attrs) {
