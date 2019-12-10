@@ -1,0 +1,16 @@
+/**
+  * 文本溢出显示省略号
+  * @param row{number} 行数
+ */
+@mixin ellipsis($row) {
+  @if ($row == 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $row;
+    -webkit-box-orient: vertical;
+  }
+}
