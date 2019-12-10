@@ -1,0 +1,23 @@
+{
+  "name": "collection",
+  "version": "1.0.0",
+  "description": "code collection",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyxjolin/collection.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tyxjolin/collection/issues"
+  },
+  "homepage": "https://github.com/tyxjolin/collection#readme",
+  "dependencies": {
+    "git-cz": "^3.3.0"
+  }
+}
