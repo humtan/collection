@@ -1,6 +1,6 @@
 /**
-  * 文本溢出显示省略号
-  * @param row{number} 行数
+ * 文本溢出显示省略号
+ * @param row{number} 行数
  */
 @mixin ellipsis($row) {
   @if ($row == 1) {
